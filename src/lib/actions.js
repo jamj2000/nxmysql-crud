@@ -20,8 +20,6 @@ export async function newArticulo(formData) {
     const descripcion = formData.get('descripcion');
     const precio = formData.get('precio');
 
-    console.log(precio);
-
     const query = 'insert into articulos(nombre,descripcion,precio) values (?, ?, ?)';
     const results = await db.query(query, [nombre, descripcion, precio]);
     console.log(results);
