@@ -1,4 +1,3 @@
-import { getArticulos } from '@/lib/actions'
 import Link from 'next/link'
 
 
