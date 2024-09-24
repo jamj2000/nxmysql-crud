@@ -4,7 +4,7 @@ import mysql from 'mysql2/promise';
 export const db = await mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    // password: 'root',
+    password: 'root',
     port: 3306,
     database: 'crud',
 });
@@ -16,7 +16,7 @@ export const db = await mysql.createConnection({
 export const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
-    // password: 'root',
+    password: 'root',
     port: 3306,
     database: 'crud',
 });
