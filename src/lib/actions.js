@@ -14,7 +14,7 @@ export async function getArticulos() {
   }
 }
 
-export async function newArticulo(formData) {
+export async function createArticulo(formData) {
   try {
     const nombre = formData.get('nombre');
     const descripcion = formData.get('descripcion');
@@ -30,7 +30,7 @@ export async function newArticulo(formData) {
 }
 
 
-export async function editArticulo(formData) {
+export async function updateArticulo(formData) {
   const id = formData.get('id')
   const nombre = formData.get('nombre')
   const descripcion = formData.get('descripcion')

@@ -8,18 +8,14 @@ export default async function Home() {
 
     return (
         <div>
-            <Link className='enlace' href="/articulos/new"> Nuevo artículo </Link>
+            <Link className='enlace' href="/articulos/create"> Nuevo artículo </Link>
             {
                 articulos.map((articulo) => (
                     <Articulo key={articulo.id} articulo={articulo} >
-                        <Link
-                            className='enlace'
-                            href={{ pathname: '/articulos/edit', query: { id: articulo.id } }}>
+                        <Link href={`/articulos/update?id=${articulo.id}`} className='enlace'>
                             Editar artículo
                         </Link>
-                        <Link
-                            className='enlace'
-                            href={{ pathname: '/articulos/delete', query: { id: articulo.id } }}>
+                        <Link href={`/articulos/delete?id=${articulo.id}`} className='enlace'>
                             Eliminar artículo
                         </Link>
                     </Articulo>
