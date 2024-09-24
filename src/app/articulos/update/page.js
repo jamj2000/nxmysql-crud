@@ -1,9 +1,17 @@
 import Form from "@/components/Form"
-import { db } from "@/lib/mysql"
+// import { db } from "@/lib/mysql"
+import { pool } from '@/lib/mysql'
 import { updateArticulo } from "@/lib/actions"
 
 async function page({searchParams}) {
-  const [ articulo ] = await db.query('select * from articulos where id = ?', [ searchParams.id ]);
+  const connection = await pool.getConnection();
+
+  const sql = 'select * from articulos where id = ?';
+  const values = [ searchParams.id ]
+  const [rows, fields] = await connection.execute(sql, values);
+
+  connection.release();
+  const articulo = rows[0]
 
   return (
     <div>

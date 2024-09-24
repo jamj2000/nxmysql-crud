@@ -1,28 +1,41 @@
 'use server'
-import { db } from '@/lib/mysql'
+// import { db } from '@/lib/mysql'
+import { pool } from '@/lib/mysql'
 import { redirect } from 'next/navigation';
 
 
 export async function getArticulos() {
   try {
-    const results = await db.query('select * from articulos');
-    // console.log(results);
-    return results;
+    const connection = await pool.getConnection();
+
+    const sql = 'select * from `articulos`';
+    const [rows] = await connection.execute(sql);
+
+    connection.release();
+    return rows;
+
   } catch (error) {
-    // console.log(error);  
-    return null;    
+    console.log(error);
+    return null;
   }
 }
 
 export async function createArticulo(formData) {
-  try {
-    const nombre = formData.get('nombre');
-    const descripcion = formData.get('descripcion');
-    const precio = formData.get('precio');
+  const nombre = formData.get('nombre');
+  const descripcion = formData.get('descripcion');
+  const precio = formData.get('precio');
 
-    const query = 'insert into articulos(nombre,descripcion,precio) values (?, ?, ?)';
-    const results = await db.query(query, [nombre, descripcion, precio]);
-    console.log(results);
+  try {
+    const connection = await pool.getConnection();
+
+    const sql = 'insert into `articulos` (`nombre`, `descripcion`, `precio`) values (?, ?, ?)'
+    const values = [nombre, descripcion, precio];
+
+    const [result, fields] = await connection.execute(sql, values)
+
+    connection.release();
+    console.log(result);
+
   } catch (error) {
     console.log(error);
   }
@@ -37,9 +50,16 @@ export async function updateArticulo(formData) {
   const precio = formData.get('precio')
 
   try {
-    const query = 'update articulos set ? where id = ? ';
-    const results = await db.query(query, [{nombre, descripcion, precio}, id]);
-    console.log(results);
+    const connection = await pool.getConnection();
+
+    const sql = 'update `articulos` set `nombre` = ?, `descripcion` = ?, `precio` = ? where `id` = ?'
+    const values = [nombre, descripcion, precio, id];
+
+    const [result, fields] = await connection.execute(sql, values)
+
+    connection.release();
+    console.log(result);
+
   } catch (error) {
     console.log(error);
   }
@@ -47,12 +67,19 @@ export async function updateArticulo(formData) {
 }
 
 export async function deleteArticulo(formData) {
-  try {
-    const id = formData.get('id');
+  const id = formData.get('id');
 
-    const query = 'delete from articulos where id = ?';
-    const results = await db.query(query, [id]);
-    console.log(results);
+  try {
+    const connection = await pool.getConnection();
+
+    const sql = 'delete from articulos where id = ?'
+    const values = [id]
+
+    const [result, fields] = await connection.execute(sql, values);
+
+    connection.release();
+    console.log(result);
+
   } catch (error) {
     console.log(error);
   }
