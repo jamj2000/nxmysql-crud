@@ -5,6 +5,7 @@ import { redirect } from 'next/navigation';
 
 
 export async function getArticulos() {
+
   try {
     const connection = await pool.getConnection();
 

@@ -2,6 +2,8 @@ import Link from 'next/link'
 import Articulo from '@/components/Articulo'
 import { getArticulos } from '@/lib/actions'
 
+export const dynamic = 'force-dynamic'
+
 export default async function Home() {
     const articulos = await getArticulos()
     // console.log(articulos);
