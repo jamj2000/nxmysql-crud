@@ -2,7 +2,7 @@
 
 Para probar la aplicación en un entorno local sigue los siguientes pasos:
 
-1. **Configura URL de base de datos en archivo .env**
+1. **Configura URL de base de datos**
 
 2. **Instala dependencias**
 
