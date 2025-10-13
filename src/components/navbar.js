@@ -2,8 +2,8 @@ import Link from "next/link"
 
 function Navbar() {
     return (
-        <nav>
-            <div>
+        <nav className="flex justify-between text-2xl p-2 bg-blue-200 font-bold">
+            <div className="flex gap-4">
                 <Link href="/">Inicio</Link>
                 <Link href="/articulos">Artículos</Link>
             </div>

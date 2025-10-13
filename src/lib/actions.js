@@ -1,27 +1,10 @@
 'use server'
-// import { db } from '@/lib/mysql'
 import { pool } from '@/lib/mysql'
-import { redirect } from 'next/navigation';
+import { revalidatePath } from 'next/cache';
 
 
-export async function getArticulos() {
 
-  try {
-    const connection = await pool.getConnection();
-
-    const sql = 'select * from `articulos`';
-    const [rows] = await connection.execute(sql);
-
-    connection.release();
-    return rows;
-
-  } catch (error) {
-    console.log(error);
-    return null;
-  }
-}
-
-export async function createArticulo(formData) {
+export async function createArticulo(prevState, formData) {
   const nombre = formData.get('nombre');
   const descripcion = formData.get('descripcion');
   const precio = formData.get('precio');
@@ -36,15 +19,17 @@ export async function createArticulo(formData) {
 
     connection.release();
     console.log(result);
+    revalidatePath('/articulos');
+    return { success: 'Operación exitosa' }
 
   } catch (error) {
     console.log(error);
   }
-  redirect('/articulos');
+
 }
 
 
-export async function updateArticulo(formData) {
+export async function updateArticulo(prevState, formData) {
   const id = formData.get('id')
   const nombre = formData.get('nombre')
   const descripcion = formData.get('descripcion')
@@ -60,14 +45,16 @@ export async function updateArticulo(formData) {
 
     connection.release();
     console.log(result);
+    revalidatePath('/articulos');
+    return { success: 'Operación exitosa' }
 
   } catch (error) {
     console.log(error);
   }
-  redirect('/articulos');
+
 }
 
-export async function deleteArticulo(formData) {
+export async function deleteArticulo(prevState, formData) {
   const id = formData.get('id');
 
   try {
@@ -80,9 +67,11 @@ export async function deleteArticulo(formData) {
 
     connection.release();
     console.log(result);
+    revalidatePath('/articulos');
+    return { success: 'Operación exitosa' }
 
   } catch (error) {
     console.log(error);
   }
-  redirect('/articulos');
+
 }

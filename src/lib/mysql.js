@@ -10,7 +10,7 @@ export const db = await mysql.createConnection({
 });
 
 // También podemos inicializar la conexión de esta otra manera
-// export const db = mysql.createConnection('mysql://root@localhost:3306/crud')
+// export const db = mysql.createConnection('mysql://root:root@localhost:3306/crud')
 
 // Podemos inicializar un pool de esta manera
 export const pool = mysql.createPool({
