@@ -18,7 +18,7 @@ export async function createArticulo(prevState, formData) {
     const [result, fields] = await connection.execute(sql, values)
 
     connection.release();
-    console.log(result);
+    // console.log(result);
     revalidatePath('/articulos');
     return { success: 'Operación exitosa' }
 
@@ -44,7 +44,7 @@ export async function updateArticulo(prevState, formData) {
     const [result, fields] = await connection.execute(sql, values)
 
     connection.release();
-    console.log(result);
+    // console.log(result);
     revalidatePath('/articulos');
     return { success: 'Operación exitosa' }
 
@@ -66,7 +66,7 @@ export async function deleteArticulo(prevState, formData) {
     const [result, fields] = await connection.execute(sql, values);
 
     connection.release();
-    console.log(result);
+    // console.log(result);
     revalidatePath('/articulos');
     return { success: 'Operación exitosa' }
 

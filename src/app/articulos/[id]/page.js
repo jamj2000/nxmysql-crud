@@ -1,21 +1,20 @@
-import { Suspense } from 'react'
-import Articulo from '@/components/articulos/item'
 import { getArticulo } from '@/lib/data'
-import { notFound } from 'next/navigation'
+import { Suspense } from 'react'
+import Articulo from '@/components/articulo/info'
 
 
-async function InfoArticulo({ params }) {
+export default async function PaginaArticulo({ params }) {
     const { id } = await params
-    const articulo = await getArticulo(id)
-
-    if (!articulo) notFound()
 
     return (
-        <div>
-            <h1 className='text-xl'>Información del artículo</h1>
-            <Articulo articulo={articulo} />
-        </div>
+        <section>
+            <h1 className='text-2xl pb-2 border-b-2 border-blue-400'>Artículo {id}</h1>
+
+            <Suspense fallback="Recuperando info de artículo ...">
+                <Articulo data={getArticulo(id)} />  {/* Pasamos promesa */}
+            </Suspense>
+        </section>
     )
 }
 
-export default InfoArticulo
+

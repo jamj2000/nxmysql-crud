@@ -24,13 +24,3 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
-
-
-button[type=submit] {
-  padding-inline: 20px;
-  padding-block: 10px;
-  background-color: cornflowerblue;
-  color: white;
-  cursor: pointer;
-  border-radius: 4px;
-}

@@ -11,6 +11,7 @@ export async function getArticulos() {
         const [rows] = await connection.execute(sql);
 
         connection.release();
+        await new Promise(resolve => setTimeout(resolve, 1000))
         return rows;
 
     } catch (error) {
@@ -21,7 +22,6 @@ export async function getArticulos() {
 
 
 export async function getArticulo(id) {
-
     try {
         const connection = await pool.getConnection();
 
@@ -29,6 +29,7 @@ export async function getArticulo(id) {
         const [rows] = await connection.execute(sql, [id]);
 
         connection.release();
+        await new Promise(resolve => setTimeout(resolve, 1000))
         return rows[0];
 
     } catch (error) {

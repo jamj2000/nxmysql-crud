@@ -27,10 +27,9 @@ const Modal = ({ children, openElement }) => {
 
     return (
         <>
-            <div onClick={openDialog}>
+            <div onClick={openDialog} className='w-min inline-block'>
                 {openElement}
             </div>
-
 
             <dialog
                 ref={dialogRef}
