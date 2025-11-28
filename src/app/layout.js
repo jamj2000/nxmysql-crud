@@ -1,6 +1,7 @@
 import '@/app/globals.css'
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
+import { Toaster } from 'sonner'
 
 export const metadata = {
   title: 'MySQL CRUD with NextJS',
@@ -19,7 +20,7 @@ export default function RootLayout({ children }) {
         </main>
 
         <Footer />
-
+        <Toaster position="top-right" richColors />
       </body>
     </html>
   )

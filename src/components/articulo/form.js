@@ -1,5 +1,6 @@
 'use client'
 import { useActionState, useEffect, useRef } from "react"
+import { toast } from "sonner"
 
 
 
@@ -10,7 +11,7 @@ export default function Form({ action, title, articulo, disabled = false }) {
 
     useEffect(() => {
         if (state?.success) {
-            // toast.success(state.success)
+            toast.success(state.success)
             formRef.current.closest('dialog')?.close()
         }
     }, [state])
