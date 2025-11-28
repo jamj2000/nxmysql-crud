@@ -1,24 +1,24 @@
 'use client'
-import { useActionState, useEffect, useRef } from "react"
+import { useActionState, useEffect, useId } from "react"
 import { toast } from "sonner"
 
 
 
 export default function Form({ action, title, articulo, disabled = false }) {
-    const formRef = useRef(null)
+    const formId = useId()
     const [state, faction, pending] = useActionState(action, {})
 
 
     useEffect(() => {
         if (state?.success) {
             toast.success(state.success)
-            formRef.current.closest('dialog')?.close()
+            document.getElementById(formId).closest('dialog')?.close()
         }
     }, [state])
 
 
     return (
-        <form ref={formRef} action={faction} className="flex flex-col">
+        <form id={formId} action={faction} className="flex flex-col">
             <input type='hidden' name='id' value={articulo?.id} />
 
             <h1 className="uppercase text-center text-xl">{title}</h1>

@@ -1,15 +1,38 @@
 'use client'
-import { use } from "react"
+import { use, useEffect, useState } from "react"
 
 import Modal from "@/components/modal"
 import Form from "@/components/articulo/form"
 
 import { updateArticulo, deleteArticulo } from "@/lib/actions"
 import Link from "next/link"
+import { getArticulos } from "@/lib/data"
 
 
 export default function ListaArticulos({ data }) {
     const articulos = use(data)   // Resolvemos promesa
+    // const articulos = use(getArticulos())
+
+    // const [articulos, setArticulos] = useState([])
+    // async function obtenerDatos() {
+    //     const articulos = await getArticulos()
+    //     setArticulos(articulos)
+    // }
+
+    // useEffect(() => {
+    //     // esto equivale a hacer fetch pero sin la necesidad de disponer de una API 
+    //     obtenerDatos()
+    // }, [])
+
+    // const [articulos, setArticulos] = useState(null);
+
+    // async function cargar() {
+    //     const data = await getArticulos(); // OK
+    //     setArticulos(data);
+    // }
+
+    // use(cargar())
+    // if (!articulos) return <p>Cargando...</p>
 
     return (
         <div className="flex flex-wrap gap-4">
